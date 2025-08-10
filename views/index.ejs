@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Professional Landing Page - Tailwind</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif']
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-poppins text-white min-h-screen bg-cover bg-center bg-fixed" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./images/bg.png');">
+
+<!-- Header -->
+<%- include('components/header') %>
+
+  <!-- Hero Section -->
+  <section class="flex justify-center items-center text-center h-[calc(100vh-80px)] px-4">
+    <div class="max-w-6xl">
+      <h1 class="text-5xl font-bold mb-4 leading-tight">All MIT-CSN Previous Year Question Papers – One Platform</h1>
+      <p class="text-lg font-light mb-6">Access 5+ years of question papers from every department, all in one convenient hub.<br>
+Search, download, and prepare smarter — anytime, anywhere.</p>
+      <a href="/user-dashboard" class="inline-block px-6 py-3 bg-[#ff7200] text-black font-bold rounded-lg hover:bg-white hover:text-[#ff7200] transition">Get Started</a>
+    </div>
+  </section>
+
+</body>
+</html>

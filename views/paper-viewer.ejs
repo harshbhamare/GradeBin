@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paper Viewer</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      background: #1f2937; /* Tailwind's gray-800 */
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 1rem;
+      background: #111827; /* Tailwind's gray-900 */
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    iframe {
+      flex-grow: 1;
+      width: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <header>Paper Viewer</header>
+  <iframe src="<%= driveLink.replace('/view', '/preview') %>" allowfullscreen></iframe>
+</body>
+</html>

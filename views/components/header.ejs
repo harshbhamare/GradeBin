@@ -1,0 +1,40 @@
+<header class="sticky top-0 z-50 bg-black/40 backdrop-blur-md">
+  <div class="container mx-auto flex justify-between items-center px-4 py-4">
+    <!-- Logo -->
+    <div class="text-4xl font-bold text-[#ff7200]">GradeBin</div>
+
+    <!-- Desktop Menu -->
+    <nav class="hidden md:block">
+      <ul class="flex gap-8 text-white">
+        <li><a href="/" class="hover:text-[#ff7200] transition">Home</a></li>
+        <li><a href="/about-us" class="hover:text-[#ff7200] transition">About</a></li>
+        <li><a href="/terms-and-condition" class="hover:text-[#ff7200] transition">Terms & Policy</a></li>
+        <li><a href="/contact" class="hover:text-[#ff7200] transition">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+      ☰
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <nav id="menu" class="hidden md:hidden bg-black/80 text-white p-4">
+    <ul class="flex flex-col gap-4">
+      <li><a href="/" class="hover:text-[#ff7200] transition">Home</a></li>
+      <li><a href="/about-us" class="hover:text-[#ff7200] transition">About</a></li>
+      <li><a href="/terms-and-condition" class="hover:text-[#ff7200] transition">Terms & Policy</a></li>
+      <li><a href="/contact" class="hover:text-[#ff7200] transition">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+
+  menuBtn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>

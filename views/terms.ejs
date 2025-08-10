@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms & Policy - PREWAYZ</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif']
+          },
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="font-poppins text-white min-h-screen bg-cover bg-center bg-fixed"
+  style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./images/bg.png');">
+
+  <!-- Header -->
+  <%- include('components/header') %>
+
+    <!-- JavaScript -->
+    <script>
+      const menuBtn = document.getElementById('menu-btn');
+      const menu = document.getElementById('menu');
+
+      menuBtn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    </script>
+
+
+    <!-- Terms & Policy Section -->
+    <main class="py-12 px-6 md:px-16">
+      <div class="max-w-4xl mx-auto bg-gray-800 bg-opacity-80 text-white-800 rounded-2xl shadow-xl p-8">
+        <h1 class="text-3xl font-bold mb-6">Terms & Policy</h1>
+        <p class="mb-4">
+          This website is created for the students of <span class="font-semibold">MIT College</span> as a charity
+          initiative
+          to help them access previous year question papers and academic resources easily. Our aim is to support
+          students
+          in their studies without any profit-making intent.
+        </p>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">1. Purpose of the Website</h2>
+        <p class="mb-4">
+          All materials provided here are solely for educational and revision purposes. We do not encourage any misuse
+          of
+          the content provided on this platform.
+        </p>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">2. Copyright and Ownership</h2>
+        <p class="mb-4">
+          We do not hold any copyright over the materials uploaded. The question papers are official examination papers
+          of MIT College and belong to the respective institution. This website does not claim ownership of these
+          materials.
+        </p>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">3. Fair Use Disclaimer</h2>
+        <p class="mb-4">
+          This platform operates under the principle of fair use for educational purposes. All content is provided free
+          of cost, without any commercial gain, and for the benefit of students.
+        </p>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">4. No Liability</h2>
+        <p class="mb-4">
+          While we strive to ensure the accuracy and completeness of the materials provided, we are not liable for any
+          errors, outdated content, or academic outcomes resulting from the use of this website.
+        </p>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">5. Contact</h2>
+        <p class="mb-4">
+          If you are a copyright holder or have concerns regarding any material on this website, please
+          <a href="contact.html" class="text-blue-600 underline hover:text-blue-800">contact us</a> immediately, and we
+          will
+          take appropriate action.
+        </p>
+
+        <p class="mt-8 text-sm text-gray-600">
+          By using this website, you agree to abide by these terms and policies.
+        </p>
+      </div>
+    </main>
+
+</body>
+
+</html>
