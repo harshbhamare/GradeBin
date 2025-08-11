@@ -21,19 +21,19 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/yourdbname'
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error("MongoDB connection error:", err));
 
-const homeRouter = require('./routes/homeRoute');
-const searchRouter = require('./routes/searchPaper');
-const contactRouter = require('./routes/contactRoute');
-const aboutRouter = require('./routes/aboutRoute');
-const termRouter = require('./routes/termsRoute');
+const homeRouter = require('../routes/homeRoute');
+const searchRouter = require('../routes/searchPaper');
+const contactRouter = require('../routes/contactRoute');
+const aboutRouter = require('../routes/aboutRoute');
+const termRouter = require('../routes/termsRoute');
 
-const adminLogin = require('./routes/adminLogin');
-const adminDashboard = require("./routes/admindashboard");
-const adminSignup = require('./routes/adminSignup');
+const adminLogin = require('../routes/adminLogin');
+const adminDashboard = require("../routes/admindashboard");
+const adminSignup = require('../routes/adminSignup');
 
-const userDash = require("./routes/userDashRoute");
-const papersRoute = require("./routes/papers");
-const paperViewerRoute = require('./routes/qview');
+const userDash = require("../routes/userDashRoute");
+const papersRoute = require("../routes/papers");
+const paperViewerRoute = require('../routes/qview');
 
 app.use("/", homeRouter);
 app.use("/search", searchRouter);
@@ -58,7 +58,7 @@ app.use("/user-dashboard", userDash);
 app.use("/papers", papersRoute);
 app.use('/papers', paperViewerRoute);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
