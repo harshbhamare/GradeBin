@@ -1,4 +1,4 @@
-// Load environment variables from .env at the very top
+// Load environment variables
 require('dotenv').config();
 
 const express = require("express");
@@ -8,33 +8,37 @@ const path = require("path");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
+// Middleware
 app.use(express.json());
-
-app.set('view engine', 'ejs');
-
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "../public"))); // note: ../public because api/index.js is in a subfolder
 
-// Use environment variable for MongoDB URI
+// Views setup
+app.set('views', path.join(__dirname, '../views'));
+app.set('view engine', 'ejs');
+
+// MongoDB connection
 mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/yourdbname')
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error("MongoDB connection error:", err));
 
-const homeRouter = require('../routes/homeRoute');
-const searchRouter = require('../routes/searchPaper');
-const contactRouter = require('../routes/contactRoute');
-const aboutRouter = require('../routes/aboutRoute');
-const termRouter = require('../routes/termsRoute');
+// Import your routers (adjust paths if needed)
+const homeRouter = require("../routes/homeRoute");
+const searchRouter = require("../routes/searchPaper");
+const contactRouter = require("../routes/contactRoute");
+const aboutRouter = require("../routes/aboutRoute");
+const termRouter = require("../routes/termsRoute");
 
-const adminLogin = require('../routes/adminLogin');
+const adminLogin = require("../routes/adminLogin");
 const adminDashboard = require("../routes/admindashboard");
-const adminSignup = require('../routes/adminSignup');
+const adminSignup = require("../routes/adminSignup");
 
 const userDash = require("../routes/userDashRoute");
 const papersRoute = require("../routes/papers");
-const paperViewerRoute = require('../routes/qview');
+const paperViewerRoute = require("../routes/qview");
 
+// Routes
 app.use("/", homeRouter);
 app.use("/search", searchRouter);
 app.use("/contact", contactRouter);
@@ -58,10 +62,6 @@ app.use("/user-dashboard", userDash);
 app.use("/papers", papersRoute);
 app.use('/papers', paperViewerRoute);
 
-const PORT = process.env.PORT || 3000;
-
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
+// No app.listen() here — Vercel handles serverless function listening
 
 module.exports = app;
