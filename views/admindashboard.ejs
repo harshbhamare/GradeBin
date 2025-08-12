@@ -106,9 +106,10 @@
         class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <option value="" disabled <%= !editPaper ? 'selected' : '' %>>Select Department</option>
+        <option value="Basic Science and Humanities" <%= editPaper && editPaper.department === 'Basic Science and Humanities' ? 'selected' : '' %>>Basic Science and Humanities</option>
         <option value="Computer Science and Engineering" <%= editPaper && editPaper.department === 'Computer Science and Engineering' ? 'selected' : '' %>>Computer Science and Engineering</option>
-                <option value="Computer Science and Design" <%= editPaper && editPaper.department === 'Computer Science and Design' ? 'selected' : '' %>>Computer Science and Design</option>
-                        <option value="Artificial Intelligence and Data Science" <%= editPaper && editPaper.department === 'Artificial Intelligence and Data Science' ? 'selected' : '' %>>Artificial Intelligence and Data Science</option>
+        <option value="Computer Science and Design" <%= editPaper && editPaper.department === 'Computer Science and Design' ? 'selected' : '' %>>Computer Science and Design</option>
+        <option value="Artificial Intelligence and Data Science" <%= editPaper && editPaper.department === 'Artificial Intelligence and Data Science' ? 'selected' : '' %>>Artificial Intelligence and Data Science</option>
         <option value="Mechanical Engineering" <%= editPaper && editPaper.department === 'Mechanical Engineering' ? 'selected' : '' %>>Mechanical Engineering</option>
         <option value="Civil Engineering" <%= editPaper && editPaper.department === 'Civil Engineering' ? 'selected' : '' %>>Civil Engineering</option>
         <option value="Electrical Engineering" <%= editPaper && editPaper.department === 'Electrical Engineering' ? 'selected' : '' %>>Electrical Engineering</option>
