@@ -140,7 +140,7 @@
             <div class="p-3 border-b border-gray-700 hover:bg-gray-700 cursor-pointer">
               <h3 class="font-semibold">${paper.name}</h3>
               <p>Dept: ${paper.department} | Year: ${paper.year} | Type: ${paper.type}</p>
-              <a href="${paper.driveLink}" target="_blank" class="text-orange-400 underline">Open Paper</a>
+              <a href="/papers/view?driveLink=${encodeURIComponent(paper.driveLink)}" class="text-orange-400 underline">Open Paper</a>
             </div>
           `).join('');
                         } else {

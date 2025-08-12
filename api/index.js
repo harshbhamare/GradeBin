@@ -63,5 +63,5 @@ app.use("/papers", papersRoute);
 app.use('/papers', paperViewerRoute);
 
 // No app.listen() here — Vercel handles serverless function listening
-
+// app.listen(process.env.PORT || 3000)
 module.exports = app;
