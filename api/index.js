@@ -19,9 +19,24 @@ app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/yourdbname')
-  .then(() => console.log("MongoDB connected"))
-  .catch(err => console.error("MongoDB connection error:", err));
+// mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/yourdbname')
+//   .then(() => console.log("MongoDB connected"))
+//   .catch(err => console.error("MongoDB connection error:", err));
+
+async function startServer() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 5000, // avoid long hangs
+    });
+    console.log("MongoDB connected");
+
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+    process.exit(1);
+  }
+}
+
+startServer();
 
 // Import your routers (adjust paths if needed)
 const homeRouter = require("../routes/homeRoute");
