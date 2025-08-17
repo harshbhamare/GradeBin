@@ -8,17 +8,14 @@ const cookieParser = require("cookie-parser");
 
 //  "mongodb://127.0.0.1:27017/tesstttttt"
 
-async function startServer() {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      serverSelectionTimeoutMS: 5000,
-    });
-    console.log("MongoDB connected");
-  } catch (err) {
-    console.error("MongoDB connection error:", err);
-    process.exit(1);
-  }
-}
+const dbURI = process.env.MONGO_URI; 
+
+mongoose.connect(dbURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.log(err));
 
 // Middleware
 app.use(express.json());
@@ -29,9 +26,6 @@ app.use(express.static(path.join(__dirname, "../public")));
 // Views setup
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
-
-// Start MongoDB
-startServer();
 
 // Import routers
 const homeRouter = require("../routes/homeRoute");
