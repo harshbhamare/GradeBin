@@ -30,27 +30,29 @@ router.get('/edit/:id', async (req, res) => {
 });
 
 // Create or update paper
-router.post('/', async (req, res) => {
+// This route now accepts POST requests to both '/' and '/submit'
+router.post(['/', '/submit'], async (req, res) => {
   try {
-    const { id, name, semester, year, department, type, driveLink } = req.body;
+    const { id, name, semester, year, department, type, driveLink, acyear } = req.body;
+    console.log(req.body);
+
+    const papers = await QuestionPaper.find().sort({ createdAt: -1 });
 
     // Validate required fields
-    if (!name || !semester || !year || !department || !type || !driveLink) {
-      const papers = await QuestionPaper.find().sort({ createdAt: -1 });
+    if (!name || !semester || !year || !department || !type || !driveLink || !acyear) {
       return res.render('admindashboard', {
         papers,
-        editPaper: id ? { _id: id, name, semester, year, department, type, driveLink } : null,
+        editPaper: id ? { _id: id, name, semester, year, department, acyear, type, driveLink } : null,
         error: 'All fields are required.'
       });
     }
 
-    // Validate driveLink
+    // Validate drive link
     const driveLinkPattern = /^https:\/\/drive\.google\.com\/.*/;
     if (!driveLinkPattern.test(driveLink)) {
-      const papers = await QuestionPaper.find().sort({ createdAt: -1 });
       return res.render('admindashboard', {
         papers,
-        editPaper: id ? { _id: id, name, semester, year, department, type, driveLink } : null,
+        editPaper: id ? { _id: id, name, semester, year, department, acyear, type, driveLink } : null,
         error: 'Invalid Google Drive link format.'
       });
     }
@@ -64,6 +66,7 @@ router.post('/', async (req, res) => {
       paper.semester = semester;
       paper.year = year;
       paper.department = department;
+      paper.acyear = acyear;
       paper.type = type;
       paper.driveLink = driveLink;
       await paper.save();
@@ -74,6 +77,7 @@ router.post('/', async (req, res) => {
         semester,
         year,
         department,
+        acyear,
         type,
         driveLink,
         uploadedBy: 'Admin'

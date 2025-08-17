@@ -1,6 +1,4 @@
-// Load environment variables
 require('dotenv').config();
-
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -8,37 +6,34 @@ const path = require("path");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
-// Middleware
-app.use(express.json());
-app.use(cookieParser());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "../public"))); // note: ../public because api/index.js is in a subfolder
-
-// Views setup
-app.set('views', path.join(__dirname, '../views'));
-app.set('view engine', 'ejs');
-
-// MongoDB connection
-// mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/yourdbname')
-//   .then(() => console.log("MongoDB connected"))
-//   .catch(err => console.error("MongoDB connection error:", err));
+//  "mongodb://127.0.0.1:27017/tesstttttt"
 
 async function startServer() {
   try {
     await mongoose.connect(process.env.MONGO_URI, {
-      serverSelectionTimeoutMS: 5000, // avoid long hangs
+      serverSelectionTimeoutMS: 5000,
     });
     console.log("MongoDB connected");
-
   } catch (err) {
     console.error("MongoDB connection error:", err);
     process.exit(1);
   }
 }
 
+// Middleware
+app.use(express.json());
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "../public")));
+
+// Views setup
+app.set('views', path.join(__dirname, '../views'));
+app.set('view engine', 'ejs');
+
+// Start MongoDB
 startServer();
 
-// Import your routers (adjust paths if needed)
+// Import routers
 const homeRouter = require("../routes/homeRoute");
 const searchRouter = require("../routes/searchPaper");
 const contactRouter = require("../routes/contactRoute");
@@ -61,22 +56,18 @@ app.use("/about-us", aboutRouter);
 app.use("/terms-and-condition", termRouter);
 
 app.use("/admin-dashboard", adminDashboard);
-app.use("/question-papers/submit", adminDashboard);
-app.use("/question-papers", adminDashboard);
-app.use("/question-papers/edit/:id", adminDashboard);
-app.use("/submit", adminDashboard);
-app.use("/question-papers/delete/:id", adminDashboard);
+app.use("/question-papers", adminDashboard);  // handles create, edit, delete
 
-app.use("/login", adminLogin);
 app.use("/login-admin", adminLogin);
-
-app.use("/signup", adminSignup);
 app.use("/signup-admin", adminSignup);
 
 app.use("/user-dashboard", userDash);
 app.use("/papers", papersRoute);
 app.use('/papers', paperViewerRoute);
 
-// No app.listen() here — Vercel handles serverless function listening
-// app.listen(process.env.PORT || 3000)
+// Start server
+// app.listen(process.env.PORT || 4000, () => {
+//   console.log("Server running on port", process.env.PORT || 4000);
+// });
+
 module.exports = app;
