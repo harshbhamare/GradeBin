@@ -129,7 +129,7 @@
                         liveResults.innerHTML = data.map(paper => `
                             <div class="p-3 border-b border-gray-700 hover:bg-gray-700 cursor-pointer">
                                 <h3 class="font-semibold">${paper.name}</h3>
-                                <p>Dept: ${paper.department} | Year: ${paper.year} | Type: ${paper.type}</p>
+                                <p>Dept: ${paper.department} | Year: ${paper.year} | Type: ${paper.type} | Academic Year : ${paper.acyear}</p>
                                 <a href="/papers/view?driveLink=${encodeURIComponent(paper.driveLink)}" class="text-orange-400 underline">Open Paper</a>
                             </div>
                         `).join('');
@@ -205,7 +205,7 @@
                     div.className = "bg-gray-700 p-6 rounded-xl shadow-lg flex justify-between items-center";
                     div.innerHTML = `
                         <div>
-                          <h3 class="text-xl font-bold">${paper.name} - ${paper.type} ${paper.year}</h3>
+                          <h3 class="text-xl font-bold">${paper.name} - ${paper.type} ${paper.year} - Academic Year ${paper.acyear}</h3>
                           <p class="text-gray-300">Department: ${paper.department} | Year: ${paper.year} | Type: ${paper.type}</p>
                         </div>
                         <a href="/papers/view?driveLink=${encodeURIComponent(paper.driveLink)}"
