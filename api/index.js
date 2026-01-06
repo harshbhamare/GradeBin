@@ -36,7 +36,7 @@ const termRouter = require("../routes/termsRoute");
 
 const adminLogin = require("../routes/adminLogin");
 const adminDashboard = require("../routes/admindashboard");
-const adminSignup = require("../routes/adminSignup");
+// const adminSignup = require("../routes/adminSignup");
 
 const userDash = require("../routes/userDashRoute");
 const papersRoute = require("../routes/papers");
@@ -53,7 +53,7 @@ app.use("/admin-dashboard", adminDashboard);
 app.use("/question-papers", adminDashboard);  // handles create, edit, delete
 
 app.use("/login-admin", adminLogin);
-app.use("/signup-admin", adminSignup);
+// app.use("/signup-admin", adminSignup);
 
 app.use("/user-dashboard", userDash);
 app.use("/papers", papersRoute);
